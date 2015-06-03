@@ -74,23 +74,24 @@ module flywheel(){
 }
 
 module servo(){
-    
-    rotate([180,0,90]){
-        union(){
-            translate([-6,0,0]){
-                rotate([90,0,0]){
-                    cube([12,16,22]);
-                    translate([0,16,-5.5])
-                        cube([12, 2.5, 33]);
-                    translate([0,18.5,0])
-                        cube([12,5,22]);
-                    
+    translate([-16,6.5,61]){
+        rotate([180,0,270]){
+            union(){
+                translate([-6,0,0]){
+                    rotate([90,0,0]){
+                        cube([12,16,22]);
+                        translate([0,16,-5.5])
+                            cube([12, 2.5, 33]);
+                        translate([0,18.5,0])
+                            cube([12,5,22]);
+                        
+                    }
                 }
+                translate([0,-6,23])    
+                    cylinder(h=5, d=11.5);
+                translate([0,-6,28])
+                    cylinder(h=5, d=20);
             }
-            translate([0,-6,23])    
-                cylinder(h=5, d=11.5);
-            translate([0,-6,28])
-                cylinder(h=6, d=20);
         }
     }
 }
@@ -158,26 +159,14 @@ module baseUnit()
 }
 
 module cover(){
-        difference(){
+        difference(){            
             union(){
                 translate([12,0,44])
                     cylinder(h=6, d=35);
                 translate([-12,0,44])
                     cylinder(h=6, d=35);
             }
-            rotate([0,0,90])
-                translate([15,10,62.5])
-                    rotate([180,0,90]){
-                        union(){
-                            translate([-6,3,0]){
-                                rotate([90,0,0]){
-                                    cube([12,19,22]);
-                                        translate([0,12,-5.5])
-                                            cube([12,2.5, 33]);
-                                }
-                            }
-                        }
-                    }
+            
             translate([12,-15,45])
                 cylinder(h=6, d=2, $fs=.5);
             translate([-12,-15,45])
@@ -186,7 +175,9 @@ module cover(){
                 cylinder(h=6, d=2, $fs=.5);
             translate([27,0,45])
                 cylinder(h=6, d=2, $fs=.5);     
-         
+            translate([-16,.5,40])
+                cube([22,12,20]);
+            
     }
 }
 
@@ -205,20 +196,74 @@ module extras(){
         color("SteelBlue",1)
             flywheel();
     
-    rotate([0,0,90])
-        translate([15,10,62.5])
-            color("Aqua",1)
-                servo();
+    color("Aqua",1)
+        servo();
+}
+
+module magbarrel(){
+    union(){
+        difference(){
+            
+            translate([0,0,1]){
+                cylinder(h=98, d=35, $fs = 0.5);
+            }
+            cylinder(h=100, d= 26, $fs = 0.5);
+            
+            translate([14,0,52])
+                cube([3,3,105], center=true);
+            translate([-14,0,52])
+                cube([3,3,105], center=true);
+            
+        }
+    }
+}
+
+module upper(){
+    
+    union(){
+        translate([4,54,6])
+            cube([37,88,2], center=true);
+        translate([21.5,54,17])
+            cube([2,88,20], center=true);
+        
+            difference(){
+                translate([-15,98,25])
+                    rotate([90,0,0])
+                        cylinder(h=80, d=45);
+                magbarrel();
+                translate([-15,99,25])
+                    rotate([90,0,0])
+                        cylinder(h=99, d=34);
+                
+                translate([-30,50,25])
+                cube([30,100,45], center=true);
+                
+                translate([-8,60,2.5])
+                cube([15,100,5], center=true);
+            }
+        
+        translate([0,58,10])
+            cube([6,80,6],center=true);
+        
+        translate([5,58,16])
+            cube([5,80,20], center=true);
+    }
 }
 
 
 union(){
     
-    baseUnit();
+     baseUnit();
     
+    translate([-15,15,25])
+        rotate([270,0,0])
+            magbarrel();
+    
+    //cover();
 
+    color("DarkSlateGray",1)
+        upper();
     
-    cover();
     
     extras();
     
