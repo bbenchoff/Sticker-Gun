@@ -60,8 +60,21 @@ module barrel(){
            translate([-10,0,-6])
                rotate([90,0,0])
                 cylinder(r=19, h=60, center=true);
-      } 
-}
+           
+           translate([0,-25.5,-2]){
+                rotate([270,0,0]){
+                   cover();
+                }
+            }
+           
+            }
+            
+           
+         
+      }
+     
+     
+
 
 module motor(){
  
@@ -74,7 +87,7 @@ module flywheel(){
 }
 
 module servo(){
-    translate([-20,8,61]){
+    translate([-20,8,60.5]){
         rotate([180,0,270]){
             union(){
                 translate([-6,0,0]){
@@ -97,107 +110,119 @@ module servo(){
 }
 
 module baseUnit(){
-    union(){
-        
-        difference(){    
-            translate([-21,13,25])  
-                sphere(d=35);
-            translate([-21,13,25])
-                sphere(d=32);
-            translate([-12.5,13,25])
-                cube([20,36,36],center=true);
-            translate([-12,0,4])
-                cylinder(h=30, d=27);
-            translate([-25,23.5,25])
-                cube([36,20,36],center=true);
-         }
-         
+    difference(){
+        union(){
+            
+            difference(){    
+                translate([-21,13,25])  
+                    sphere(d=35);
+                translate([-21,13,25])
+                    sphere(d=32);
+                translate([-12.5,13,25])
+                    cube([20,36,36],center=true);
+                translate([-12,0,4])
+                    cylinder(h=30, d=27);
+                translate([-25,23.5,25])
+                    cube([36,20,36],center=true);
+             }
+             
 
-      
-        difference(){
+          
             difference(){
-                
-                
-                
-                union(){
-                    translate([12,0,0])
-                        cylinder(h=44, d=35);
-                    translate([-12,0,0])
-                        cylinder(h=44, d=35);
-                    //translate([12,0,35])
-                    //    sphere(d=45);
-                    //translate([-12,0,35])
-                    //    sphere(d=45);
+                difference(){
+                    
+                    
+                    
+                    union(){
+                        translate([12,0,0])
+                            cylinder(h=42.5, d=35);
+                        translate([-12,0,0])
+                            cylinder(h=42.5, d=35);
+                        //translate([12,0,35])
+                        //    sphere(d=45);
+                        //translate([-12,0,35])
+                        //    sphere(d=45);
+                        
+                    }
+                    
+                    
+                    union(){
+                        translate([12,0,4])
+                            cylinder(h=30, d=27);
+                        translate([-12,0,4])
+                            cylinder(h=30, d=27);
+                    }
+                    
+                translate([0,10,25])
+                    cube([45,35,40], center=true);
                     
                 }
+                translate([-21,13,25])
+                    sphere(d=32);
                 
+                translate([-12,0,0])
+                    standoffHoles();
+                translate([12,0,0])
+                    standoffHoles();
+                //translate([0,10,25])
+                  //  cube([50,30,40], center=true);
+                translate([0,0,25])
+                    cube([10,30,35], center=true);
                 
+               servo();
+               
+            }
+            
+            //translate([0,47,3])
+            //    cube([40,70,6], center=true);
+            
+            translate([0,-2,25]){
+                rotate([90,0,0]){
+                   barrel();
+                }
+            }
+            
+            translate([-12,0,0]){
+                standoffs();  
+            }
+            
+            translate([12,0,0]){
+                standoffs();  
+            }
+        }
+    }
+    
+}
+module cover(){
+
+            difference(){            
                 union(){
-                    translate([12,0,4])
-                        cylinder(h=30, d=27);
-                    translate([-12,0,4])
-                        cylinder(h=30, d=27);
+                    translate([12,0,42])
+                        cylinder(h=8, d=35);
+                    translate([-12,0,42])
+                        cylinder(h=8, d=35);
+                    translate([0,10,46])
+                        cube([57,15,8], center=true);
                 }
                 
-            translate([0,10,25])
-                cube([45,35,40], center=true);
+                translate([12,-15,45])
+                    cylinder(h=6, d=2, $fs=.5);
+                translate([-12,-15,45])
+                    cylinder(h=6, d=2, $fs=.5);
+                translate([-27,0,45])
+                    cylinder(h=6, d=2, $fs=.5);
+                translate([27,0,45])
+                    cylinder(h=6, d=2, $fs=.5);     
+                translate([-20,2,40])
+                    cube([22,12,20]);
                 
-            }
-            translate([-21,13,25])
-                sphere(d=32);
-            
-            translate([-12,0,0])
-                standoffHoles();
-            translate([12,0,0])
-                standoffHoles();
-            //translate([0,10,25])
-              //  cube([50,30,40], center=true);
-            translate([0,0,25])
-                cube([10,30,35], center=true);
-            
-           servo();
+                
+                
+                servo();
+                
         }
         
-        //translate([0,47,3])
-        //    cube([40,70,6], center=true);
-        
-        translate([0,-2,25]){
-            rotate([90,0,0]){
-               barrel();
-            }
-        }
-        
-        translate([-12,0,0]){
-            standoffs();  
-        }
-        
-        translate([12,0,0]){
-            standoffs();  
-        }
-    }
-}
-
-module cover(){
-        difference(){            
-            union(){
-                translate([12,0,44])
-                    cylinder(h=6, d=35);
-                translate([-12,0,44])
-                    cylinder(h=6, d=35);
-            }
-            
-            translate([12,-15,45])
-                cylinder(h=6, d=2, $fs=.5);
-            translate([-12,-15,45])
-                cylinder(h=6, d=2, $fs=.5);
-            translate([-27,0,45])
-                cylinder(h=6, d=2, $fs=.5);
-            translate([27,0,45])
-                cylinder(h=6, d=2, $fs=.5);     
-            translate([-20,2,40])
-                cube([22,12,20]);
-            
-    }
+   
 }
 
 module extras(){
@@ -243,7 +268,7 @@ difference(){
           cylinder(h=5, d=35);  
         }
         translate([15,0,3]) 
-        cube([35,35,7], center = true); 
+        cube([35,35,9], center = true); 
         
         translate([0,-5,-1])
             cylinder(d=15, h=12);
@@ -328,17 +353,17 @@ union(){
     
     baseUnit();
     
-    translate([-21,13,25]) 
-        rotate([270,0,0])
-            magbarrel();
+    //translate([-21,13,25]) 
+    //    rotate([270,0,0])
+    //        magbarrel();
     
-    cover();
+   //cover();
 
-    color("DarkSlateGray",1)
-        upper();
+    //color("DarkSlateGray",1)
+   //     upper();
     
     
-   extras();
+   //extras();
     
 
 }
