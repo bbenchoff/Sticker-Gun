@@ -205,14 +205,14 @@ module cover(){
                         cube([57,15,8], center=true);
                 }
                 
-                translate([12,-15,45])
-                    cylinder(h=6, d=2, $fs=.5);
-                translate([-12,-15,45])
-                    cylinder(h=6, d=2, $fs=.5);
-                translate([-27,0,45])
-                    cylinder(h=6, d=2, $fs=.5);
-                translate([27,0,45])
-                    cylinder(h=6, d=2, $fs=.5);     
+                translate([12,-15,41])
+                    cylinder(h=10, d=2, $fs=.5);
+                translate([-12,-15,41])
+                    cylinder(h=10, d=2, $fs=.5);
+                translate([-27,0,41])
+                    cylinder(h=10, d=2, $fs=.5);
+                translate([27,0,41])
+                    cylinder(h=10, d=2, $fs=.5);     
                 translate([-20,2,40])
                     cube([22,12,20]);
                 
@@ -350,20 +350,21 @@ module upper(){
 
 
 union(){
+    color("Blue",1)
+        baseUnit();
     
-    baseUnit();
+    translate([-21,13,25]) 
+        rotate([270,0,0])
+            magbarrel();
     
-    //translate([-21,13,25]) 
-    //    rotate([270,0,0])
-    //        magbarrel();
-    
-   //cover();
+   color("DarkGreen", 1)
+    cover();
 
-    //color("DarkSlateGray",1)
-   //     upper();
+    color("DarkSlateGray",1)
+        upper();
     
     
-   //extras();
+   extras();
     
 
 }
