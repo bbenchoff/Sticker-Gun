@@ -83,10 +83,10 @@ union(){
             translate([25,-100,0])
                 cylinder(d=10, h=12);
         
-            translate([65,-90,0])
+            translate([-10,-5,0])
                 cylinder(d=10, h=12);
-        
-            translate([-5,-5,0])
+                
+            translate([50,-5,0])
                 cylinder(d=10, h=12);
         }
     
@@ -101,7 +101,10 @@ union(){
     translate([65,-90,0])
         boss();
         
-    translate([-5,-5,0])
+    translate([-10,-5,0])
+        boss();
+        
+    translate([50,-5,0])
         boss();
             
     }
@@ -175,11 +178,11 @@ module standoffHoles(){
 
 module barrel(){
       difference(){
-           cylinder(r=25, h=75, $fa=40);
-           cube([6,35,300], center=true);
+           cylinder(r=25, h=100, $fa=40);
+           cube([6,35,400], center=true);
           
            translate([0,0,-1]){
-            cylinder(h=78, r1=5, r2=22);
+            cylinder(h=120, r1=5, r2=22);
            }
            
            translate([10,0,-6])
@@ -465,8 +468,17 @@ module upper(){
     union(){
         translate([4,56,6])
             cube([37,88,2], center=true);
-        translate([21.5,56,17])
-            cube([2,88,20], center=true);
+        
+        difference(){
+            translate([21.5,56,17])
+                cube([2,88,20], center=true);
+                
+            
+            rotate([0,0,90])
+                    scale([0.85,0.85,0.80])
+                        translate([55,-20,21])
+                            solidbase();
+        }    
 
         translate([0,-1,0])
                 barrelHolder();
@@ -474,8 +486,33 @@ module upper(){
        
         feeder();
         
+        translate([27,92,5])
+            difference(){
+              cylinder(d=10, h=12);
+                translate([0,0,-1])
+                    cylinder(d=3, h=12, $fs=0.5);
+                
+            }
+        
+        translate([27,32,5])
+           difference(){
+                cylinder(d=10, h=12);
+                translate([0,0,-1])
+                    cylinder(d=3, h=12, $fs=0.5);
+            }
+            
+       translate([20,34,5])
+        cube([12,56,12]);
+        
     }
+    
+    
 }
+
+
+
+
+
 
 
 union(){
@@ -489,11 +526,11 @@ union(){
    color("DarkGreen", 1)
     cover();
 
-    color("DarkSlateGray",1)
+   color("DarkSlateGray",1)
         upper();
    
    rotate([0,0,90])
-    translate([40,-20,17])  
+    translate([42,-22,17])  
         color("Olive",1)    
         Grip();
     
