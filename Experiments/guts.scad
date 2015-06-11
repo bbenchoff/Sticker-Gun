@@ -53,7 +53,7 @@ module boss(){
     difference(){
         cylinder(d=10, h=10);
         translate([0,0,-1])
-            cylinder(d=3, h=12, $fs=0.5);
+            cylinder(d=4, h=14, $fs=0.5);
     }
 }
 
@@ -292,8 +292,10 @@ module baseUnit(){
                 translate([-21,13,25])
                     sphere(d=32);
                 
-                translate([-12,0,0])
-                    standoffHoles();
+                
+                    translate([-12,0,0])
+                        rotate([0,0,90])
+                            standoffHoles();
                 translate([12,0,0])
                     standoffHoles();
                 //translate([0,10,25])
@@ -315,7 +317,8 @@ module baseUnit(){
             }
             
             translate([-12,0,0]){
-                standoffs();  
+                rotate([0,0,90])
+                    standoffs();  
             }
             
             translate([12,0,0]){
@@ -464,7 +467,7 @@ module barrelHolder(){
 }
 
 module upper(){
-    
+difference(){   
     union(){
         translate([4,56,6])
             cube([37,88,2], center=true);
@@ -477,8 +480,11 @@ module upper(){
             rotate([0,0,90])
                     scale([0.85,0.85,0.80])
                         translate([55,-20,21])
-                            solidbase();
-        }    
+                            solidbase();  
+        }
+        
+        translate([11,98,17])
+            cube([20,3,20], center=true);
 
         translate([0,-1,0])
                 barrelHolder();
@@ -490,7 +496,7 @@ module upper(){
             difference(){
               cylinder(d=10, h=12);
                 translate([0,0,-1])
-                    cylinder(d=3, h=12, $fs=0.5);
+                    cylinder(d=4, h=14, $fs=0.5);
                 
             }
         
@@ -498,30 +504,43 @@ module upper(){
            difference(){
                 cylinder(d=10, h=12);
                 translate([0,0,-1])
-                    cylinder(d=3, h=12, $fs=0.5);
+                    cylinder(d=4, h=14, $fs=0.5);
             }
             
-       translate([20,34,5])
-        cube([12,56,12]);
-        
+       translate([21,34,5])
+        cube([8,56,12]);
+       
+      
+          
+    }
+    translate([0,100,20])     
+        cube([60,5,60], center=true);
+    
+     translate([-5,17,10])
+           rotate([315,90,0])     
+            cylinder(d=5, h=15, $fs=.01);
+    
+    translate([3,70,4])
+        cube([5.6,25,20]);
+    
     }
     
     
+   
 }
 
+module topUpper(){
 
 
 
-
-
-
+}
 union(){
     color("Blue",1)
         baseUnit();
     
-    translate([-21,13,25]) 
-        rotate([270,0,0])
-            magbarrel();
+    //translate([-21,13,25]) 
+    //    rotate([270,0,0])
+    //        magbarrel();
     
    color("DarkGreen", 1)
     cover();
@@ -529,13 +548,16 @@ union(){
    color("DarkSlateGray",1)
         upper();
    
-   rotate([0,0,90])
-    translate([42,-22,17])  
-        color("Olive",1)    
-        Grip();
+   //rotate([0,0,90])
+   // translate([42,-22,17])  
+   //     color("Olive",1)    
+   //         Grip();
     
+   topUpper();
     
-   extras();
+   //extras();
+   
+   
     
 
 }
