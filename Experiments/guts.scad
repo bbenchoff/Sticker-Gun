@@ -121,11 +121,11 @@ module battery(){
 module Grip()
 {
     
-     lowerGrip();
+    // lowerGrip();
     
-   //translate([0,0,20])
-   //   mirror([0,0,1])
-           //lowerGrip();   
+   translate([0,0,20])
+      mirror([0,0,1])
+           lowerGrip();   
     
 }
 
