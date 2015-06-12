@@ -3,9 +3,9 @@ module button(){
  cube([12,12,4],center=true);   
  cylinder(d=7,h=7);
  translate([0,0,0])
-    cylinder(d=13.1,h=6.5);
+    cylinder(d=13.5,h=6.5);
     translate([0,0,6.4])
-        cylinder(d=11.6, h=4);
+        cylinder(d=11.8, h=4);
     
 }
 
@@ -72,11 +72,11 @@ union(){
                 translate([6,1,1])
                     solidbase();
            
-           translate([3,-20,10])
+           translate([0,-20,10])
             rotate([15,270,0])
                 button();
 
-            translate([11,-50,10])
+            translate([7,-50,10])
                 rotate([15,270,0])
                     button(); 
             
@@ -90,10 +90,10 @@ union(){
                 cylinder(d=10, h=12);
         }
     
-    translate([1,-5,0])
+    translate([3,0,0])
         rotate([0,0,180])   
             rotate([0,0,14])
-                cube([2,90,10]);
+                cube([2,60,10]);
     
     translate([25,-100,0])
         boss();
@@ -123,9 +123,9 @@ module Grip()
     
      lowerGrip();
     
-    translate([0,0,20])
-        mirror([0,0,1])
-            lowerGrip();   
+   //translate([0,0,20])
+   //   mirror([0,0,1])
+           //lowerGrip();   
     
 }
 
@@ -535,25 +535,25 @@ module topUpper(){
 
 }
 union(){
-    color("Blue",1)
-        baseUnit();
+    //color("Blue",1)
+    //    baseUnit();
     
     //translate([-21,13,25]) 
     //    rotate([270,0,0])
     //        magbarrel();
     
-   color("DarkGreen", 1)
-    cover();
+   //color("DarkGreen", 1)
+   // cover();
 
-   color("DarkSlateGray",1)
-        upper();
+   //color("DarkSlateGray",1)
+   //     upper();
    
-   //rotate([0,0,90])
-   // translate([42,-22,17])  
-   //     color("Olive",1)    
-   //         Grip();
+   rotate([0,0,90])
+    translate([42,-22,17])  
+        color("Olive",1)    
+            Grip();
     
-   topUpper();
+   //topUpper();
     
    //extras();
    
